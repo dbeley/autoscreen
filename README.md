@@ -1,6 +1,10 @@
 # autoscreen
 
-Automatically take screenshot with maim.
+Automatically take screenshots with maim.
+
+By default the timer will run the script every 15 minutes. You can change it in the systemd timer file.
+
+You should also change the active directory (default: ~/Documents/autoscreen) in the systemd service file.
 
 ## Requirements
 
@@ -14,10 +18,6 @@ cd autoscreen
 chmod +x autoscreen.sh
 cp systemd-service/* ~/.config/systemd/user
 systemctl --user daemon-reload
-systemctl --user enable --now autoscreen
+systemctl --user enable --now autoscreen.timer
 systemctl --user status autoscreen
 ```
-
-By default the script will run every 30 minutes. You can change it in the systemd timer file.
-
-You can also change the active directory (default: ~/Documents/autoscreen) in the systemd service file.
