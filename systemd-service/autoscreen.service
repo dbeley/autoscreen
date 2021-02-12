@@ -1,0 +1,11 @@
+[Unit]
+Description=autoscreen.service
+
+[Service]
+Type=oneshot
+# Change it to your own directory
+WorkingDirectory=%h/Documents/autoscreen
+ExecStart=/usr/bin/bash autoscreen.sh
+
+[Install]
+WantedBy=multi-user.target
