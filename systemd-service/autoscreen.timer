@@ -1,8 +1,10 @@
 [Unit]
-Description=Run autoscreen every 15 minutes.
+Description=Run autoscreen every hour.
 
 [Timer]
 OnCalendar=hourly
+RandomizedDelaySec=3600
+AccuracySec=1us
 
 [Install]
 WantedBy=timers.target
