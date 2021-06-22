@@ -6,4 +6,4 @@ HOSTNAME="$(cat /proc/sys/kernel/hostname)"
 DESTINATION_DIR="$HOME/autoscreen/$TODAY"
 
 mkdir -p "$DESTINATION_DIR"
-maim -m 10 "${DESTINATION_DIR}/${HOSTNAME}_autoscreen_$(date +%s).png"
+maim -m 10 "${DESTINATION_DIR}/${HOSTNAME}_autoscreen_$(date +%Y-%m-%d_%H:%M:%S_%s).png"
