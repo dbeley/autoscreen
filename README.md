@@ -16,9 +16,12 @@ What you can change:
 ```
 git clone https://github.com/dbeley/autoscreen
 cd autoscreen
-chmod +x autoscreen.sh
+chmod +x *.sh
 cp systemd-service/* ~/.config/systemd/user
 systemctl --user daemon-reload
 systemctl --user enable --now autoscreen.timer
 systemctl --user status autoscreen
+# if you use wayland
+systemctl --user enable --now autoscreen_wayland.timer
+systemctl --user status autoscreen_wayland
 ```

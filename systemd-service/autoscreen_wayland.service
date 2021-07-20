@@ -1,0 +1,11 @@
+[Unit]
+Description=autoscreen_wayland.service
+
+[Service]
+Type=oneshot
+# Change it to your own directory
+WorkingDirectory=%h/Documents/autoscreen
+ExecStart=/usr/bin/bash autoscreen_wayland.sh
+
+[Install]
+WantedBy=multi-user.target

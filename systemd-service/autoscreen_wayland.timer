@@ -1,0 +1,10 @@
+[Unit]
+Description=Run autoscreen_wayland every hour.
+
+[Timer]
+OnCalendar=hourly
+RandomizedDelaySec=3600
+AccuracySec=1us
+
+[Install]
+WantedBy=timers.target
