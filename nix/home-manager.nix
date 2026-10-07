@@ -39,6 +39,32 @@ in
       description = "String inserted just before `autoscreen.png` in screenshot file names.";
     };
 
+    format = lib.mkOption {
+      type = lib.types.enum [
+        "png"
+        "jpeg"
+        "ppm"
+        "webp"
+        "avif"
+        "jxl"
+      ];
+      default = "png";
+      description = ''
+        Output image format. `png`, `jpeg` and `ppm` are written by grim
+        directly; `webp`, `avif` and `jxl` are captured as PNG and re-encoded
+        with cwebp/avifenc/cjxl (much smaller, lossy by default).
+      '';
+    };
+
+    quality = lib.mkOption {
+      type = lib.types.ints.between 0 100;
+      default = 90;
+      description = ''
+        Encoder quality, 0-100 (higher is better). Ignored for `png` and `ppm`.
+        `100` is lossless for `avif` and `jxl`.
+      '';
+    };
+
     onCalendar = lib.mkOption {
       type = lib.types.str;
       default = "hourly";
@@ -65,6 +91,8 @@ in
         Environment = [
           "AUTOSCREEN_DESTINATION_DIR=${cfg.destinationDir}"
           "AUTOSCREEN_FILENAME_SUFFIX=${cfg.filenameSuffix}"
+          "AUTOSCREEN_FORMAT=${cfg.format}"
+          "AUTOSCREEN_QUALITY=${toString cfg.quality}"
         ];
       };
     };
