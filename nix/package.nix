@@ -5,6 +5,9 @@
   coreutils,
   makeWrapper,
   grim,
+  libwebp,
+  libavif,
+  libjxl,
   src,
 }:
 stdenv.mkDerivation (finalAttrs: {
@@ -20,9 +23,11 @@ stdenv.mkDerivation (finalAttrs: {
 
     install -Dm755 autoscreen.sh $out/share/autoscreen/autoscreen.sh
 
+    # grim writes png/jpeg/ppm; libwebp/libavif/libjxl provide the optional
+    # cwebp/avifenc/cjxl re-encoders for the webp/avif/jxl output formats.
     makeWrapper ${bash}/bin/bash $out/bin/autoscreen \
       --add-flags "$out/share/autoscreen/autoscreen.sh" \
-      --prefix PATH : ${lib.makeBinPath [ coreutils grim ]}
+      --prefix PATH : ${lib.makeBinPath [ coreutils grim libwebp libavif libjxl ]}
 
     runHook postInstall
   '';
